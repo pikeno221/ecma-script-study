@@ -8,6 +8,21 @@ nomes.forEach(function (nome) {
 console.log('------------');
 
 
-nomes.forEach(function (nome) {
+nomes.forEach(function (nome) {    // map
   console.log(nome);
 });
+
+
+
+
+var numeros = [1, 2, 3];
+
+var dobro = [];
+
+numeros.forEach(function(numero){
+  dobro.push(numero*2);
+  
+});
+
+console.log(dobro);
+
