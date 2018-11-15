@@ -228,3 +228,111 @@ function calc(dimensoes) {
 
 
 
+
+mplemente uma função chamada calculaDistancia
+ que recebe uma lista de objetos que representam ruas e faça a soma de seus tamanhos. 
+ Cada objeto rua da lista possui as seguintes propriedades:
+
+nome: String que representa o nome da rua
+tamanho: Número intero que representa a comprimento da rua em metros
+Utilize somente os conceitos que foram apresentados neste capítulo para
+ iterar as ruas. Assuma que sempre haverá pelo menos uma rua no array.
+
+Tome como exemplo, a entrada abaixo.
+
+var ruas = [
+  { nome:'Rua 1', tamanho: 2500 },
+  { nome:'Rua 2', tamanho: 3400 },
+  { nome:'Rua 3', tamanho: 1400 }
+];
+Exemplo: calculaDistancia(ruas) → 7300
+
+
+
+var ruas = [
+    { nome:'Rua 1', tamanho: 2500 },
+    { nome:'Rua 2', tamanho: 3400 },
+    { nome:'Rua 3', tamanho: 1400 }
+  ];
+function calculaDistancia(ruas) {
+    var totalDistancia = 0
+    var iterador = ruas[Symbol.iterator]();
+    var done = false;
+    var proximo = iterador.next();
+    do {
+        totalDistancia += proximo.value.tamanho;
+        proximo = iterador.next();
+    } while (!proximo.done)
+
+    return totalDistancia;
+}
+
+console.log(calculaDistancia(ruas));
+
+
+
+
+Desenvolva a função 'isListaVazia' que recebe como parâmetro uma 
+lista de números inteiros qualquer e retorna o valor true 
+caso esta lista não tenha nenhum item e false para os demais
+ resultados. A lógica deve ser feita usando somente a propriedade 
+ done do objeto que é obtido ao executar o next no iterador do array.
+
+
+var numeros = [1, 2, 3, 4];
+
+var iterator = numeros[Symbol.iterator]();
+var proximo = iterator.next();
+
+function isListaVazia(lista) {
+    return lista[Symbol.iterator]().next().done;
+  }
+
+
+
+
+  Utilizando os aprendizados deste capítulo, implemente a função
+   soletraPalavra que recebe como único
+  parâmetro uma String e então exibe cada letra da String em uma linha do console.
+
+
+  var palavra = 'teste';
+
+  
+  function soletraPalavra(palavra) {
+    var iteradorPalavra = palavra[Symbol.iterator]();
+    var letra = iteradorPalavra.next();
+    do {
+      console.log(letra.value);
+      letra = iteradorPalavra.next();
+    } while (!letra.done);
+  }
+
+
+
+
+  Crie o método 'criaIterador' que recebe como parâmetro uma lista 
+  e então o devolve um objeto que possui o mesmo comportamento de um iterador,
+   ou seja, que possui o método next que toda vez que invocado, retorna um objeto
+    com as propriedades: value e done.
+
+
+    
+Exemplo: criaIterador([1,2]).next() → { value: 1, done: false }
+
+
+function criaIterador(array) {
+    var proximoIndice = 0;
+ 
+     return {
+        next: function() {
+            if(proximoIndice < array.length) {
+              return { value: array[proximoIndice++], done: false };
+            } else {
+              return { value: undefined, done: true };
+            }
+        }
+     };
+ 
+ }
+
